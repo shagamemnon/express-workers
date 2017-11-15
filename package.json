@@ -3,7 +3,7 @@
   "version": "0.2.6",
   "description": "A Parse App for Workers",
   "engines": {
-    "node": ">=4.3"
+    "node": "8.9.1"
   },
   "main": "index.js",
   "scripts": {
