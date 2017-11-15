@@ -1,23 +1,4 @@
 var express = require('express');
-var app = express();
-
-app.set('port', (process.env.PORT || 5000));
-
-app.use(express.static(__dirname + '/public'));
-
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-var express = require('express');
 var Parse = require('parse/node');
 var path = require('path');
 var app = express();
@@ -28,18 +9,21 @@ Parse.initialize(
 );
 Parse.serverURL = 'https://pg-app-tpg8jmcjvh1ewdbc3lry4pvdz30q9l.scalabl.cloud/1/';
 
-app.use('/public', express.static(path.join(__dirname, '/public')));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-var port = process.env.PORT || 1337;
-var httpServer = require('http').createServer(app);
-httpServer.listen(port, function() {
-  console.log('parse-server-example running on port ' + port + '.');
+app.set('port', (process.env.PORT || 1337));
+
+app.use(express.static(__dirname + '/public'));
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
 
-
 // ******** ///////////////// ******** //
+app.get('/', function(request, response) {
+  response.render('pages/index', { data: "" });
+});
 
 
 app.get('/createPlayer/:player', function(req, res) {
