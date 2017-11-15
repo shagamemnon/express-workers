@@ -1,9 +1,9 @@
 {
-  "name": "node-js-getting-started",
+  "name": "express-workers",
   "version": "0.2.6",
-  "description": "A sample Node.js app using Express 4",
+  "description": "A Parse App for Workers",
   "engines": {
-    "node": "6.11.1"
+    "node": ">=4.3"
   },
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,29 @@
     "test": "node test.js"
   },
   "dependencies": {
-    "ejs": "2.5.6",
-    "express": "4.15.2"
+    "ejs": "2.5.2",
+    "express": "4.15.2",
+    "kerberos": "~0.0.x",
+    "parse": "~1.8.0",
+    "parse-server": "2.2.14",
+    "aws-sdk": "2.6.15",
+    "body-parser": "1.15.2",
+    "braintree": "1.42.0",
+    "crypto-js": "3.1.8",
+    "mailgun-js": "0.7.13",
+    "mandrill-api": "1.0.45",
+    "mercadopago": "0.5.0",
+    "moment": "2.15.2",
+    "parse-express-cookie-session": "0.0.3",
+    "parse-express-https-redirect": "0.0.1",
+    "parse-image": "0.2.0",
+    "plivo": "0.4.0",
+    "pug": "2.0.0-beta6",
+    "pusher": "1.5.0",
+    "sendgrid": "4.7.1",
+    "stripe": "4.12.0",
+    "twilio": "2.11.0",
+    "underscore": "1.8.3"
   },
   "devDependencies": {
     "request": "^2.81.0",
@@ -20,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/shagamemnon/express-workers"
   },
   "keywords": [
     "node",
