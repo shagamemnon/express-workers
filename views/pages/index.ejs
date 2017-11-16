@@ -3,23 +3,21 @@
 <% include ../partials/header.ejs %>
 
   <body id="root">
-    <div class="left-container">
-      <br>
-      <br>
-    </div>
     <div class="middle-container">
       <div class="web-page">
         <a href="/" class="lang-logo">
           <br><img src="/public/frank-logo.png" height="100px"></a>
         <h2 style="color:#222">ExpressWorkers</h2>
-        <p>Write Article:</p>
-        <textarea></textarea>
-        <form method="GET">
-          <br>
-          <br>
+        <br>
+        <p>Title:</p>
+        <form method="GET" action="/create">
           <input type="text" name="fname" id="name" value="" placeholder='Title'>
           <input id="form-submission" type="submit" value="Create AMP Article & Regular Article">
         </form>
+        <br>
+        <br>
+        <p>Article:</p>
+        <textarea></textarea>
       </div>
       <div id="formatted-json"></div>
       <p>Result:</p>

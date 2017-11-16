@@ -3,23 +3,6 @@ Parse.serverURL = 'https://pg-app-tpg8jmcjvh1ewdbc3lry4pvdz30q9l.scalabl.cloud/1
 
 $(function() {
 
-
-  var getAMPhtml = function(ampContent) {
-    var Posts = Parse.Object.extend("Posts");
-    var query = new Parse.Query(Posts);
-    query.equalTo("name", "amp-html-tags");
-    query.first({
-      success: function(object) {
-        // Successfully retrieved the object.
-        console.log();
-        $('.json').text(object.get('headTags') + ampContent + object.get('footTags'));
-      },
-      error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-  }
-
   var createPost = function(title, ampContent) {
     var Amp = Parse.Object.extend("Amp");
     var amp = new Amp();
@@ -30,6 +13,7 @@ $(function() {
     amp.save(null, {
       success: function(amp) {
         console.log('New object created with objectId: ' + amp.id);
+        window.location.assign("/amp/" + title);
       },
       error: function(amp, error) {
         console.log('Failed to create new object, with error code: ' + error.message);
@@ -41,7 +25,8 @@ $(function() {
   $('#form-submission').on('click', function(e) {
     e.preventDefault();
     var title = document.querySelector('#name').value;
-    createPost(title, tinymce.activeEditor.getContent({ format: 'raw' }));
+    var content = tinymce.activeEditor.getContent({ format: 'raw' })
+    createPost(title, content);
   })
 });
 

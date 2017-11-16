@@ -88,7 +88,7 @@ app.get('/amp/:post', function(req, res) {
   query.first({
     success: function(object) {
 
-      res.send(JSON.stringify({ "ampContent": object.get('content') }));
+      res.send(object.get('content'));
 
     },
     error: function(error) {
