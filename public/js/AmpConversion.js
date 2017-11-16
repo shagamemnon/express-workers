@@ -20,10 +20,11 @@ $(function() {
     });
   }
 
-  var createPost = function(ampContent) {
+  var createPost = function(title, ampContent) {
     var Amp = Parse.Object.extend("Amp");
     var amp = new Amp();
 
+    amp.set("title", title);
     amp.set("content", ampContent);
 
     amp.save(null, {
@@ -39,7 +40,8 @@ $(function() {
   // $('.json').text(" ").hide();
   $('#form-submission').on('click', function(e) {
     e.preventDefault();
-    createPost(tinymce.activeEditor.getContent({ format: 'raw' }));
+    var title = document.querySelector('#name').value;
+    createPost(title, tinymce.activeEditor.getContent({ format: 'raw' }));
   })
 });
 

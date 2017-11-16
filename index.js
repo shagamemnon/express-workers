@@ -80,41 +80,33 @@ app.get('/queryPlayer/:player', function(req, res) {
   });
 })
 
-// app.get('/amp/:post', function(req, res) {
-//   var Post = Parse.Object.extend("Amp");
-//   var query = new Parse.Query(Amp);
+app.get('/amp/:post', function(req, res) {
+  var Amp = Parse.Object.extend("Amp");
+  var query = new Parse.Query(Amp);
 
-//   if (req.params.post === undefined) {
-//     query.startsWith("Title", "Example AMP Post");
-//   } else {
-//     query.startsWith("title", req.params.post);
-//   }
+  query.equalTo("title", req.params.post);
+  query.first({
+    success: function(object) {
 
-//   query.find({
-//     success: function(results) {
-//       console.log("Successfully retrieved " + results.length + " scores.");
-//       res.send(JSON.stringify({ a: results }));
-//       // Do something with the returned Parse.Object values
-//       for (var i = 0; i < results.length; i++) {
-//         var object = results[i];
-//         console.log(object.id + ' - ' + object.get('playerName'));
-//       }
-//     },
-//     error: function(error) {
-//       console.log("Error: " + error.code + " " + error.message);
-//     }
-//   });
-// })
+      res.send(JSON.stringify({ "ampContent": object.get('content') }));
 
-app.get('/amp/tags', function(req, res) {
+    },
+    error: function(error) {
+      console.log("Error: " + error.code + " " + error.message);
+    }
+  });
+})
+
+app.get('/amp-tags', function(req, res) {
   var AmpTags = Parse.Object.extend("AmpTags");
   var query = new Parse.Query(AmpTags);
   query.equalTo("queryID", "amp-html-tags");
   query.first({
     success: function(object) {
-      var ht = object.get('headTags');
-      console.log(object.get('headTags') + object.get('footTags'));
-      res.send(JSON.stringify({ "ampHead": object.get('headTags'), "ampFoot": object.get('footTags') }));
+      res.send(JSON.stringify({
+        "ampHead": object.get('headTags'),
+        "ampFoot": object.get('footTags')
+      }));
     },
     error: function(object, error) {
       console.log('error')
