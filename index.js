@@ -2,6 +2,7 @@ var express = require('express');
 var Parse = require('parse/node');
 var path = require('path');
 var app = express();
+var ejs = require('ejs');
 
 Parse.initialize(
   "ulx8lAUVH72sOe1IdljjknGtI9SK3MsLeaXPQP9z",
@@ -14,13 +15,14 @@ app.set('view engine', 'ejs');
 
 app.set('port', (process.env.PORT || 1337));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/'));
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-// ******** ///////////////// ******** //
+// ** ///////////////// ** //
+
 app.get('/', function(request, response) {
   response.render('pages/index', { data: "" });
 });
@@ -30,7 +32,7 @@ app.get('/createPlayer/:player', function(req, res) {
   var GameScore = Parse.Object.extend("GameScore");
   var gameScore = new GameScore();
 
-  gameScore.set("score", 1337);
+  gameScore.set("score", 0);
   gameScore.set("playerName", req.params.player);
   gameScore.set("cheatMode", false);
 
@@ -38,7 +40,8 @@ app.get('/createPlayer/:player', function(req, res) {
     success: function(gameScore) {
       // Execute any logic that should take place after the object is saved.
       console.log('New object created with objectId: ' + gameScore.id);
-      res.render('pages/index', { data: gameScore });
+      console.log(gameScore.playerName);
+      res.render('pages/index', { data: req.params.player });
     },
     error: function(gameScore, error) {
       // Execute any logic that should take place if the save fails.
@@ -47,6 +50,9 @@ app.get('/createPlayer/:player', function(req, res) {
     }
   })
 });
+
+
+
 
 app.get('/queryPlayer/:player', function(req, res) {
   var GameScore = Parse.Object.extend("GameScore");
@@ -70,6 +76,48 @@ app.get('/queryPlayer/:player', function(req, res) {
     },
     error: function(error) {
       console.log("Error: " + error.code + " " + error.message);
+    }
+  });
+})
+
+// app.get('/amp/:post', function(req, res) {
+//   var Post = Parse.Object.extend("Amp");
+//   var query = new Parse.Query(Amp);
+
+//   if (req.params.post === undefined) {
+//     query.startsWith("Title", "Example AMP Post");
+//   } else {
+//     query.startsWith("title", req.params.post);
+//   }
+
+//   query.find({
+//     success: function(results) {
+//       console.log("Successfully retrieved " + results.length + " scores.");
+//       res.send(JSON.stringify({ a: results }));
+//       // Do something with the returned Parse.Object values
+//       for (var i = 0; i < results.length; i++) {
+//         var object = results[i];
+//         console.log(object.id + ' - ' + object.get('playerName'));
+//       }
+//     },
+//     error: function(error) {
+//       console.log("Error: " + error.code + " " + error.message);
+//     }
+//   });
+// })
+
+app.get('/amp/tags', function(req, res) {
+  var AmpTags = Parse.Object.extend("AmpTags");
+  var query = new Parse.Query(AmpTags);
+  query.equalTo("queryID", "amp-html-tags");
+  query.first({
+    success: function(object) {
+      var ht = object.get('headTags');
+      console.log(object.get('headTags') + object.get('footTags'));
+      res.send(JSON.stringify({ "ampHead": object.get('headTags'), "ampFoot": object.get('footTags') }));
+    },
+    error: function(object, error) {
+      console.log('error')
     }
   });
 })

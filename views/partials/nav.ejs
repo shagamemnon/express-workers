@@ -1,36 +1,16 @@
 <nav>
-  <div class="container">
+  <div class="web-page">
     <ul>
-      <li>
-        <a href="/headers"><span class="glyphicon glyphicon-user"></span> Echo <em><strong>req</strong></em> headers</a>
-      </li>
-      <li>
-        <a href="/ip"><span class="glyphicon glyphicon-user"></span> Return k:v pair as HTTP <em><strong>res</strong></em> header</a>
-      </li>
-      <li>
-        <a href="/timeout"><span class="glyphicon glyphicon-user"></span> Return <em><strong>res</strong></em> with delay</a>
-      </li>
+      <li><a href="/headers"><span class="glyphicon glyphicon-user"></span> Echo <em><strong>req</strong></em> headers</a></li>
+      <li><a href="/ip"><span class="glyphicon glyphicon-user"></span> Return k:v pair as HTTP <em><strong>res</strong></em> header</a></li>
+      <li><a href="/timeout"><span class="glyphicon glyphicon-user"></span> Return <em><strong>res</strong></em> with delay</a></li>
     </ul>
     <ul>
-      <li>
-        <a href="/headers"><span class="glyphicon glyphicon-user"></span> Accept POST <em><strong>req</strong></em> // Echo POST form body in <em><strong>res</strong></em></a>
-        <form action='/save' method="POST">
-          <br> First name:
-          <input type="text" name="fname">
-          <br> Last name:
-          <input type="text" name="lname">
-          <br>
-          <br>
-          <input type="submit" value="Submit" id="form-submission">
-          <br>
-        </form>
+      <li><a href="/headers"><span class="glyphicon glyphicon-user"></span> Accept POST <em><strong>req</strong></em> // Echo POST form body in <em><strong>res</strong></em></a>
       </li>
-      <li>
-        <a href="/cached-response"><span class="glyphicon glyphicon-user"></span> Return a cached response of <em><strong>n</strong></em> bytes.</a>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> Return Res Status Codes <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
+      <li><a href="/cached-response"><span class="glyphicon glyphicon-user"></span> Return a cached response of <em><strong>n</strong></em> bytes.</a></li>
+      <li class="dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><span class="glyphicon glyphicon-info-sign"></span> Return Res Status Codes <span class="caret"></span></a>
+        <ul role="menu" class="dropdown-menu">
           <li><a href="https://devcenter.heroku.com/articles/getting-started-with-ruby">Getting Started with Ruby on Heroku</a></li>
           <li><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started with Node on Heroku</a></li>
           <li><a href="https://devcenter.heroku.com/articles/getting-started-with-php">Getting Started with PHP on Heroku</a></li>
@@ -39,12 +19,3 @@
     </ul>
   </div>
 </nav>
-<!-- Echo the HTTP request headers in the response.
-This allows you to see what headers are passed through, the headers Cloudflare adds, and header parsing/stripping behavior.
-Return an arbitrary response status code.
-Return a key:value pair as a HTTP response header
-Tip: accept a /key/value in a URL or query string or HTTP POST data to make this easy.
-Return a cached response of varying bytes.
-Tip: set up a Page Rule to cache this pattern.
-Delay returning a response for a specified number of seconds (great for testing timeout behavior)
-Accept a POST request, and then echo the POST form body back in the response. -->
