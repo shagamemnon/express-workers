@@ -4,10 +4,9 @@ var path = require('path');
 var app = express();
 
 Parse.initialize(
-  "ulx8lAUVH72sOe1IdljjknGtI9SK3MsLeaXPQP9z",
-  "3evd02rITro6toACJQfCY7k7aIBS9QzKc3SMe8VP"
+MASTER_KEY, PRIVATE_KEY
 );
-Parse.serverURL = 'https://pg-app-tpg8jmcjvh1ewdbc3lry4pvdz30q9l.scalabl.cloud/1/';
+Parse.serverURL = SERVER_URL;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
